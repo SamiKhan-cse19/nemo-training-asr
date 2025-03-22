@@ -23,11 +23,11 @@ model:
   train_ds:
     manifest_filepath: ["DATA/train_manifest.json"]
     sample_rate: ${model.sample_rate}
-    batch_size: 32 # you may increase batch_size if your memory allows
+    batch_size: 128 # you may increase batch_size if your memory allows
     shuffle: true
     num_workers: 24
     pin_memory: true
-    max_duration: 40 # it is set for LibriSpeech, you may need to update it for your dataset
+    max_duration: 20 # it is set for LibriSpeech, you may need to update it for your dataset
     min_duration: 0.1
     # tarred datasets
     is_tarred: false
@@ -235,8 +235,9 @@ trainer:
   accelerator: auto
   strategy: ddp
   accumulate_grad_batches: 1
-  gradient_clip_val: 0.0
-  precision: 16 # 16, 32, or bf16
+  gradient_clip_val: 1.0
+  precision: bf16 # 16, 32, or bf16
+  gradient_clip_algorithm: "norm"
   log_every_n_steps: 10  # Interval of logging.
   enable_progress_bar: True
   num_sanity_val_steps: 0 # number of steps to perform validation steps for sanity check the validation process before starting the training, setting to 0 disables it
