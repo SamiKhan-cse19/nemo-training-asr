@@ -205,7 +205,7 @@ def enable_bn_se(m):
         for param in m.parameters():
             param.requires_grad_(True)
 
-@hydra_runner(config_path="conf", config_name="speech_to_text_finetune")
+@hydra_runner(config_path="conf", config_name="speech_to_text_finetune_parakeet_ctc")
 def main(cfg):
     logging.info(f'Hydra config: {OmegaConf.to_yaml(cfg)}')
 
