@@ -7,7 +7,7 @@ init_from_pretrained_model: "nvidia/parakeet-ctc-0.6b" # path to pretrained mode
 
 model:
   sample_rate: 16000
-  freeze_encoder: true
+  freeze_encoder: false
 
   train_ds:
     manifest_filepath: ["DATA/train_manifest.json"]
@@ -112,7 +112,7 @@ exp_manager:
     always_save_nemo: True # saves the checkpoints as nemo files along with PTL checkpoints
     every_n_epochs: 0
     every_n_train_steps: 500
-  resume_if_exists: false
+  resume_if_exists: true
   resume_ignore_no_checkpoint: false
 
   create_wandb_logger: true
